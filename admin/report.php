@@ -23,9 +23,14 @@
           </div>
         </div>
       </div><br>
+
       <div class="divider"></div><br>
       <h5>Student Department</h5>
       <canvas id="chart3"></canvas><br>
+
+      <div class="divider"></div><br>
+      <h5>Total Paid Student</h5>
+      <canvas id="chart4"></canvas><br>
     </div>
   </section>
 </div>
@@ -135,6 +140,51 @@
                   'rgba(153, 102, 255, 1)',
                   'rgba(255, 159, 64, 1)',
                   'rgba(0, 0, 0, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+        elements: {
+          point: {
+            radius:0
+          }
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+
+    // Chart 4 -
+    let ctx4 = $('#chart4');
+    let myChart4= new Chart(ctx4, {
+      type: 'bar',
+      data: {
+          labels: ["Paid", "Pending"],
+          datasets: [{
+              label: '# Total Paid Student',
+              data: [
+                <?php
+                  $sql = "SELECT SUM(record_status = 'approved') AS app,
+                  SUM(record_status = 'pending') AS pen FROM record";
+                  $result = mysqli_query($conn, $sql);
+                  while ($row = mysqli_fetch_array($result)) {
+                    echo $row['app'].",".$row['pen'];
+                  }
+                ?>
+              ],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
               ],
               borderWidth: 1
           }]

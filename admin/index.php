@@ -242,6 +242,31 @@
               echo "<li class='collection-item'>Damage: <span class='secondary-content red-text'>".$row['damage']."</span></li>";
             ?>
           </ul>
+
+          <ul class="collection with-header z-depth-1">
+            <li class="collection-header blue white-text">
+              <i class="fas fa-chart-line"></i> Sales status
+            </li>
+            <?php
+              // Total student
+              $sql = "SELECT COUNT(student_id) as total from `student`";
+              $result = mysqli_query($conn, $sql);
+              $row = mysqli_fetch_array($result);
+              echo "<li class='collection-item'>Total student: <span class='secondary-content green-text'>".$row['total']."</span></li>";
+
+              // Total
+              $sql = "SELECT COUNT(record_id) as total from `record` WHERE record_status='approved'";
+              $result = mysqli_query($conn, $sql);
+              $row = mysqli_fetch_array($result);
+              echo "<li class='collection-item'>Paid student: <span class='secondary-content green-text'>".$row['total']."</span></li>";
+
+              // total paid locker
+              $sql = "SELECT SUM(record_price) as price from `record` WHERE record_status='approved'";
+              $result = mysqli_query($conn, $sql);
+              $row = mysqli_fetch_array($result);
+              echo "<li class='collection-item'>Total paid locker: <span class='secondary-content green-text'>RM".$row['price']."</span></li>";
+            ?>
+          </ul>
         </div>
       </div>
     </div>

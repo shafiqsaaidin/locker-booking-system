@@ -69,7 +69,7 @@
           <?php endif ?>
           <div class="card">
             <div class="card-image">
-              <img id="userimg" src="../img/admin.png" class="circle responsive-img">
+              <img id="admin_img" src="../img/logo.png" class="responsive-img">
             </div>
             <div class="card-content">
               <span class="card-title center-align">Admin Login</span>

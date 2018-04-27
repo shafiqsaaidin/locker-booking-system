@@ -36,6 +36,13 @@ table, th, td {
   width: 12em;
 }
 
+#admin_img {
+  margin: auto;
+  padding-top: 1em;
+  height: 12em;
+  width: 14em;
+}
+
 @media(max-width: 480px){
   .box {
     width: 100%;
@@ -45,6 +52,13 @@ table, th, td {
     margin: auto;
     height: 10em;
     width: 10em;
+  }
+
+  #admin_img {
+    margin: auto;
+    padding-top: 1em;
+    height: 12em;
+    width: 100%;
   }
 }
 

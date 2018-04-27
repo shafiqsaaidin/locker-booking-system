@@ -24,16 +24,16 @@
           <li>
             <div class="user-view">
               <div class="background">
-                <img src="../img/ocean.jpg" alt="ocean">
+                <img src="../img/bg_img.jpeg" alt="ocean">
               </div>
               <a href="">
-                <img src="../img/admin.png" alt="" class="circle">
+                <img src="../img/logo.png" alt="" class="responsive-img" height="50%" width="100%">
               </a>
               <a href="#">
-                <span class="name white-text">John Doe</span>
+                <span class="name grey-text text-darken-4">John Doe</span>
               </a>
               <a href="#">
-                <span class="email white-text">jdoe@gmail.com</span>
+                <span class="email grey-text text-darken-4">jdoe@gmail.com</span>
               </a>
             </div>
           </li>
@@ -51,23 +51,15 @@
     <li>
       <div class="user-view">
         <div class="background">
-          <img src="../img/ocean.jpg" alt="ocean">
+          <img src="../img/bg_img.jpeg" alt="ocean">
         </div>
-        <div class="row">
-          <div class="col s4">
-            <img src="../img/admin.png" alt="" class="circle">
-          </div>
-          <div class="col s8">
-            <a href="#">
-              <span class="name white-text"><?php echo $_SESSION['admin_uname']; ?></span>
-            </a>
-            <a href="#">
-              <span class="email white-text"><?php echo $_SESSION['admin_email']; ?></span>
-            </a>
-          </div>
-        </div>
-
-
+        <img src="../img/logo.png" alt="" class="responsive-img" height="50%" width="100%">
+        <a href="#">
+          <span class="name grey-text text-darken-4"><?php echo $_SESSION['admin_uname']; ?></span>
+        </a>
+        <a href="#">
+          <span class="email grey-text text-darken-4"><?php echo $_SESSION['admin_email']; ?></span>
+        </a>
       </div>
     </li>
     <li><a href="index.php"><i class="fas fa-home"></i>&nbsp  Home</a></li>

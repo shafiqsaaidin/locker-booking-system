@@ -59,7 +59,7 @@
       <!-- Locker Details, Available -->
       <div class="col s12 m3">
         <div class="row">
-          <ul class="collection with-header">
+          <ul class="collection with-header z-depth-1">
             <li class="collection-header blue white-text">
               <i class="fas fa-box"></i> Lockers
             </li>
@@ -91,12 +91,32 @@
           </ul>
         </div>
         <div class="row">
-          <ul class="collection with-header">
+          <ul class="collection with-header z-depth-1">
             <li class="collection-header blue white-text">
-              <i class="fas fa-info"></i> Notification
+              <i class="fas fa-info-circle"></i> Notification
             </li>
             <li>
               <p style="padding:0 1em;">Please <a href="register.php">register</a> first before you make any booking, once booked print the receipt and bring the receipt for payment at counter receptionist.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="row">
+          <ul class="collection with-header z-depth-1">
+            <li class="collection-header blue white-text">
+              <i class="fas fa-map-marker"></i> Contact us
+            </li>
+            <li>
+              <img class="responsive-img" src="img/contact_us.jpeg" alt="contact">
+            </li>
+            <li>
+              <p style="padding:0 1em;">
+                Universiti Teknikal Malaysia Melaka,<br>
+                Hang Tuah Jaya, 76100 Durian Tunggal,<br>
+                Melaka, Malaysia.<br><br>
+                <i class="fas fa-phone"></i>&nbsp;&nbsp;+606 555 2000<br>
+                <i class="fas fa-phone"></i>&nbsp;&nbsp;+606 331 6247<br>
+                <i class="fas fa-envelope"></i>&nbsp;&nbsp;<a href="#">webmaster@utem.edu.my</a>
+              </p>
             </li>
           </ul>
         </div>
