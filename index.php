@@ -25,7 +25,7 @@
               <div class='card-action'>
                 <input type="hidden" name="id" value="<?php echo $row['locker_id']; ?>">
                 <div><?php echo $row['locker_id']; ?></div>
-                <div>RM <?php echo $row['locker_price']; ?></div>
+                <div>RM 1/day</div>
                 <div class="<?php switch ($row['locker_status']) {
                   case 'Available':
                     echo 'green-text';

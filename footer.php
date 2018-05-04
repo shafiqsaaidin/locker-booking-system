@@ -12,7 +12,7 @@
 
       // Initialize datepicker
       $('.datepicker').pickadate({
-        format: 'dd/mm/yy'
+        format: 'yyyy-mm-dd'
       });
 
       // Hide messagebox after 5 second

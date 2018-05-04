@@ -95,7 +95,7 @@
                   <th>#</th>
                   <th>Start</th>
                   <th>End</th>
-                  <th>Price (RM)</th>
+                  <th>Price</th>
                   <th>Locker id</th>
                   <th>Status</th>
                   <th>Subscription</th>
@@ -112,7 +112,7 @@
                   <td><?php echo $i; $i++; ?></td>
                   <td><?php echo $row['record_start']; ?></td>
                   <td><?php echo $row['record_end']; ?></td>
-                  <td><?php echo $row['record_price']; ?></td>
+                  <td><?php echo "RM"." ".$row['record_price']; ?></td>
                   <td><?php echo $row['locker_id']; ?></td>
                   <td><?php echo $row['record_status']; ?></td>
                   <td><?php echo $row['record_sub']; ?></td>

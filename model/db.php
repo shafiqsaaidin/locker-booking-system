@@ -1,7 +1,7 @@
 <?php 
   $serverName = "localhost";
   $userName = "root";
-  $password = "q";
+  $password = "";
   $database = "smart_tagging_system";
 
   // Create connection

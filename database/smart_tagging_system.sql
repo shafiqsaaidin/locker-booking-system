@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 21, 2018 at 09:53 PM
--- Server version: 5.7.21-0ubuntu0.16.04.1
--- PHP Version: 7.0.28-0ubuntu0.16.04.1
+-- Host: 127.0.0.1
+-- Generation Time: May 04, 2018 at 06:07 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -41,7 +43,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_username`, `admin_email`, `admin_phone`, `admin_password`) VALUES
-('111111', 'admin1', 'admin1@gmail.com', 137663521, '$2y$10$SjecZ1Uyml2lX5XiP6OsA.xb25vYPEVPIeMFIgTc4Zf6zFvM9iO0u');
+('111111', 'admin1', 'admin1@gmail.com', 137663521, '$2y$10$SjecZ1Uyml2lX5XiP6OsA.xb25vYPEVPIeMFIgTc4Zf6zFvM9iO0u'),
+('111112', 'admin2', 'admin2@gmail.com', 123456789, '$2y$10$UFWj//x6YnSsgoWRHcEET.bh4/SbBgFVYRiR3b9ZsS75gK.xNh2Pm');
 
 -- --------------------------------------------------------
 
@@ -52,7 +55,7 @@ INSERT INTO `admin` (`admin_id`, `admin_username`, `admin_email`, `admin_phone`,
 CREATE TABLE `locker` (
   `locker_id` varchar(15) NOT NULL,
   `locker_status` varchar(15) NOT NULL,
-  `locker_price` int(11) NOT NULL
+  `locker_price` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -60,14 +63,14 @@ CREATE TABLE `locker` (
 --
 
 INSERT INTO `locker` (`locker_id`, `locker_status`, `locker_price`) VALUES
-('A100100', 'Damage', 10),
-('A100101', 'Booked', 10),
-('A100102', 'Booked', 20),
-('A100103', 'Booked', 20),
-('A100104', 'Damage', 10),
-('A100105', 'Booked', 30),
-('A100106', 'Available', 10),
-('A100107', 'Available', 10);
+('A100100', 'Booked', 1),
+('A100101', 'Available', 1),
+('A100102', 'Available', 1),
+('A100103', 'Available', 1),
+('A100104', 'Damage', 1),
+('A100105', 'Booked', 1),
+('A100106', 'Booked', 1),
+('A100107', 'Booked', 1);
 
 -- --------------------------------------------------------
 
@@ -83,6 +86,7 @@ CREATE TABLE `record` (
   `record_item` varchar(255) DEFAULT NULL,
   `record_status` varchar(10) NOT NULL DEFAULT 'pending',
   `record_sub` varchar(10) NOT NULL DEFAULT 'expired',
+  `record_approved_by` varchar(15) NOT NULL,
   `student_id` varchar(15) NOT NULL,
   `locker_id` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -91,8 +95,8 @@ CREATE TABLE `record` (
 -- Dumping data for table `record`
 --
 
-INSERT INTO `record` (`record_id`, `record_start`, `record_end`, `record_price`, `record_item`, `record_status`, `record_sub`, `student_id`, `locker_id`) VALUES
-(15, '21/04/18', '27/04/18', 10, 'img/uploads/5adb40502c0714.58591122.png', 'approved', 'active', '01dns14f1029', 'A100101');
+INSERT INTO `record` (`record_id`, `record_start`, `record_end`, `record_price`, `record_item`, `record_status`, `record_sub`, `record_approved_by`, `student_id`, `locker_id`) VALUES
+(25, '2018-05-04', '2018-05-25', 21, 'img/uploads/5aec7e0603a902.02044713.png', 'approved', 'active', 'admin2', '01dns14f1030', 'A100100');
 
 -- --------------------------------------------------------
 
@@ -163,7 +167,9 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `record`
 --
 ALTER TABLE `record`
-  MODIFY `record_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `record_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

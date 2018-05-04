@@ -4,6 +4,11 @@
   require_once 'model/db.php';
 
   $msg = $msgClass = '';
+  function get_price($date1, $date2) {
+    $diff = date_diff(date_create($date1), date_create($date2));
+    $price = $diff->format("%a");
+    return $price * 1;
+  }
 
   // handle the get request base on user id
   if (isset($_REQUEST['id'])) {
@@ -43,25 +48,32 @@
           $fileNameNew = uniqid('', true).".".$fileActulExt;
           $fileDestination = 'img/uploads/'.$fileNameNew;
 
-          $sql = "INSERT INTO `record` (record_start, record_end, record_price, record_item, student_id, locker_id)
-          VALUES ('$start', '$end', '$price', '$fileDestination', '$sid', '$lid');";
-          $sql .= "UPDATE `locker` SET locker_status='Booked' WHERE locker_id='$lid'";
-
-          $result = mysqli_multi_query($conn, $sql);
-          if ($result) {
-            do {
-              // grab the result of the next query
-              if (($result = mysqli_store_result($conn)) === false && mysqli_error($conn) !='') {
-                // echo "Query failed: " . mysqli_error($mysqli);
-              }
-            } while (mysqli_more_results($conn) && mysqli_next_result($conn));
-            move_uploaded_file($fileTmpName, $fileDestination);
-            $msg = "<a href='index.php' class='white-text'><i class='fas fa-arrow-circle-left'></i></a> Booking success";
-            $msgClass = "green";
+          // check date if start date lower then end date output some error
+          if ($end <= $start) {
+            $msg = "Please pick a correct date";
+            $msgClass = "red";
           } else {
-            // echo "First query failed..." . mysqli_error($conn);
-          }
+            $totalPrice = get_price($start, $end);
 
+            $sql = "INSERT INTO `record` (record_start, record_end, record_price, record_item, student_id, locker_id)
+            VALUES ('$start', '$end', '$totalPrice', '$fileDestination', '$sid', '$lid');";
+            $sql .= "UPDATE `locker` SET locker_status='Booked' WHERE locker_id='$lid'";
+  
+            $result = mysqli_multi_query($conn, $sql);
+            if ($result) {
+              do {
+                // grab the result of the next query
+                if (($result = mysqli_store_result($conn)) === false && mysqli_error($conn) !='') {
+                  // echo "Query failed: " . mysqli_error($mysqli);
+                }
+              } while (mysqli_more_results($conn) && mysqli_next_result($conn));
+              move_uploaded_file($fileTmpName, $fileDestination);
+              $msg = "<a href='index.php' class='white-text'><i class='fas fa-arrow-circle-left'></i></a> Booking success";
+              $msgClass = "green";
+            } else {
+              // echo "First query failed..." . mysqli_error($conn);
+            }
+          }
         } else {
           $msg = "Your file is too big!";
           $msgClass = "red";
@@ -108,7 +120,7 @@
       <div class="row">
         <div class="input-field col s6 m6">
           <input readonly type="text" id="price" name="price" value="<?php echo $_SESSION['locker_price']; ?>">
-          <label for="price">Locker Price (RM)</label>
+          <label for="price">Locker Price (RM) / day</label>
         </div>
         <div class="input-field file-field col s6 m6">
           <div class="btn blue">

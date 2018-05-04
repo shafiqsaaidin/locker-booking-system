@@ -9,7 +9,8 @@
   // Approve Booking
   if (isset($_POST['update'])) {
     $id = mysqli_real_escape_string($conn, $_POST['id']);
-    $sql = "UPDATE `record` SET record_status='approved', record_sub='active' WHERE record_id='$id'";
+    $adminId = $_SESSION['admin_uname'];
+    $sql = "UPDATE `record` SET record_status='approved', record_sub='active', record_approved_by='$adminId' WHERE record_id='$id'";
 
     if (mysqli_query($conn, $sql)) {
       $msg = "Update Successfull";
@@ -70,6 +71,7 @@
             <th>Student Id</th>
             <th>Locker Id</th>
             <th class="center-align">Status</th>
+            <th>Approved by</th>
             <th colspan="2" class="center">Actions</th>
           </tr>
         </thead>
@@ -85,7 +87,7 @@
             <td><?php echo $row['record_id']; ?></td>
             <td><?php echo $row['record_start']; ?></td>
             <td><?php echo $row['record_end']; ?></td>
-            <td><?php echo $row['record_price']; ?></td>
+            <td><?php echo "RM"." ".$row['record_price']; ?></td>
             <td>
               <!-- Modal Structure -->
               <div id="<?php echo $row['record_id']; ?>" class="modal">
@@ -98,6 +100,7 @@
             <td><?php echo $row['student_id']; ?></td>
             <td><?php echo $row['locker_id']; ?></td>
             <td><?php echo $row['record_status']; ?></td>
+            <td><?php echo $row['record_approved_by']; ?></td>
             <td>
               <form method='POST' action='records.php'>
                 <input type='hidden' name='id' value='<?php echo $row['record_id']; ?>'>
