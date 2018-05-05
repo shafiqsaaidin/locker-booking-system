@@ -9,7 +9,7 @@
   // Approve Booking
   if (isset($_POST['update'])) {
     $id = mysqli_real_escape_string($conn, $_POST['id']);
-    $adminId = $_SESSION['admin_uname'];
+    $adminId = $_SESSION['admin_id'];
     $sql = "UPDATE `record` SET record_status='approved', record_sub='active', record_approved_by='$adminId' WHERE record_id='$id'";
 
     if (mysqli_query($conn, $sql)) {
